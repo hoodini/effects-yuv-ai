@@ -2583,6 +2583,93 @@ footer {
 .style-neon .pal span { border: 1px solid #ff006e; box-shadow: 0 0 8px rgba(255,0,110,0.3); }
 
 /* ============================================================
+   LANG TOGGLE — EN default, click 🇮🇱 HE to switch
+   ============================================================ */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(10,10,10,0.05);
+  padding: 2px;
+  border: 1px solid rgba(10,10,10,0.1);
+  border-radius: 999px;
+  margin-inline-start: 6px;
+}
+.lang-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--charcoal);
+  border-radius: 999px;
+  transition: background .18s ease, color .18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+}
+.lang-btn .flag {
+  font-size: 13px;
+  filter: saturate(1.1);
+}
+.lang-btn.active {
+  background: var(--pink);
+  color: var(--off-white);
+  box-shadow: 0 4px 14px rgba(255, 20, 100, 0.3);
+}
+.lang-btn:not(.active):hover {
+  background: rgba(10,10,10,0.08);
+}
+
+/* default (no [lang] or lang=en) shows EN, hides HE */
+html .skills-headline-he,
+html .skill-name-he,
+html .skill-tag-he,
+html .skills-intro .he,
+html .tech-he {
+  display: none;
+}
+html .skills-headline,
+html .skill-name,
+html .skill-tag-en,
+html .skills-intro .en,
+html .tech-en {
+  display: block;
+}
+
+/* HE mode — flip */
+html[lang="he"] .skills-headline-he,
+html[lang="he"] .skill-name-he,
+html[lang="he"] .skill-tag-he,
+html[lang="he"] .skills-intro .he,
+html[lang="he"] .tech-he {
+  display: block;
+}
+html[lang="he"] .skills-headline,
+html[lang="he"] .skill-name,
+html[lang="he"] .skill-tag-en,
+html[lang="he"] .skills-intro .en,
+html[lang="he"] .tech-en {
+  display: none;
+}
+
+/* tech card — single column with toggle (was 2-col side-by-side) */
+.tech { grid-template-columns: 1fr; gap: 14px; }
+.tech-en, .tech-he {
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+/* mobile — show toggle on its own line so it always fits */
+@media (max-width: 720px) {
+  .lang-toggle { margin-top: 6px; }
+}
+
+/* ============================================================
    SKILLS SECTION (EN + HE prominent install)
    ============================================================ */
 .skills-section {
@@ -2606,34 +2693,34 @@ footer {
 .skills-eyebrow::before { content: ''; width: 36px; height: 2px; background: var(--pink); display: inline-block; }
 .skills-headline {
   font-family: 'Anton', 'Rubik', sans-serif;
-  font-size: clamp(46px, 8vw, 120px);
+  font-size: clamp(40px, 6vw, 84px);
   text-transform: uppercase;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
-  margin-bottom: 14px;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  margin-bottom: 18px;
+  font-weight: 400;
 }
 .skills-headline em { font-style: normal; color: var(--pink); }
 .skills-headline-he {
   font-family: 'Rubik', sans-serif;
   font-weight: 900;
-  font-size: clamp(36px, 6vw, 80px);
-  line-height: 1.1;
-  margin-bottom: 24px;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.05;
+  margin-bottom: 22px;
   direction: rtl;
   color: var(--charcoal);
 }
 .skills-headline-he span { color: var(--pink); }
 .skills-intro {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 14px;
   margin-bottom: 44px;
   font-size: 16px;
   line-height: 1.55;
   color: var(--charcoal);
-  max-width: 1100px;
+  max-width: 760px;
 }
-@media (max-width: 760px) { .skills-intro { grid-template-columns: 1fr; gap: 14px; } }
 .skills-intro .he {
   font-family: 'Assistant', 'Inter', sans-serif;
   direction: rtl;
@@ -3197,6 +3284,10 @@ footer {
       <a href="#scenarios">Scenarios</a>
       <a href="#tech">How · איך</a>
       <a href="#connect">Connect</a>
+      <div class="lang-toggle" role="group" aria-label="Language toggle">
+        <button class="lang-btn active" data-lang-set="en" aria-label="English"><span class="flag">🇺🇸</span>EN</button>
+        <button class="lang-btn" data-lang-set="he" aria-label="עברית"><span class="flag">🇮🇱</span>HE</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -8078,6 +8169,34 @@ function bindCopy(selector) {
 }
 bindCopy('.prompt-copy');
 bindCopy('.scen-copy');
+
+/* =========================================================
+   LANG TOGGLE — EN/HE with localStorage persistence
+   ========================================================= */
+(function () {
+  const root = document.documentElement;
+  const KEY = 'catalog-lang';
+  const buttons = document.querySelectorAll('[data-lang-set]');
+
+  function setLang(lang) {
+    root.setAttribute('lang', lang);
+    /* don't flip layout dir — Hebrew text containers already have dir=rtl */
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.langSet === lang));
+    try { localStorage.setItem(KEY, lang); } catch {}
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setLang(btn.dataset.langSet);
+    });
+  });
+
+  /* restore from localStorage on load */
+  let saved = 'en';
+  try { saved = localStorage.getItem(KEY) || 'en'; } catch {}
+  setLang(saved);
+})();
 
 /* skill install copy — click code block, copy full one-liner, don't follow card link */
 document.querySelectorAll('.skill-install').forEach(code => {
