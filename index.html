@@ -3261,9 +3261,9 @@ footer {
         <span>RTL · LTR</span>
         <span>Anton + Rubik</span>
       </div>
-      <code class="skill-install"><span class="prompt-c">$</span> npx <span class="arg">skills add hoodini/ai-agents-skills</span></code>
+      <code class="skill-install" data-copy-text="git clone --depth 1 --filter=blob:none --sparse https://github.com/hoodini/ai-agents-skills /tmp/aas && cd /tmp/aas && git sparse-checkout set skills/yuv-viral-video && mkdir -p ~/.claude/skills && cp -R skills/yuv-viral-video ~/.claude/skills/ && rm -rf /tmp/aas"><span class="prompt-c">$</span> git clone <span class="arg">… ai-agents-skills/skills/yuv-viral-video</span> → <span class="arg">~/.claude/skills/</span> <span style="color:var(--pink);">[click to copy full]</span></code>
       <div class="skill-cta">
-        <span>View on GitHub · קוד מקור</span>
+        <span>github.com/hoodini/ai-agents-skills/tree/master/skills/<strong style="color:var(--off-white);">yuv-viral-video</strong></span>
         <span class="arrow">→</span>
       </div>
     </a>
@@ -3273,20 +3273,21 @@ footer {
       <span class="skill-num">SKILL · 02 · WEB</span>
       <div>
         <h3 class="skill-name">yuv-design</h3>
-        <h3 class="skill-name-he" lang="he" dir="rtl">עיצוב הוובסייט של יובל</h3>
+        <h3 class="skill-name-he" lang="he" dir="rtl">בונה אתרים מדהימים</h3>
       </div>
-      <p class="skill-tag-en">Yuval's signature web design defaults — automatic. Anton + Rubik display, Inter + Assistant body, pink/yellow/bone palette, paper grain, warm shadows, asymmetric layouts. Bilingual RTL/LTR.</p>
-      <p class="skill-tag-he" lang="he" dir="rtl">ברירות מחדל לעיצוב ווב בסטייל של יובל — אוטומטי. Anton + Rubik לכותרות, Inter + Assistant לגוף הטקסט, פלטה ורוד/צהוב/קרם, טקסטורת נייר, צללים חמים, פריסות א-סימטריות. דו-לשוני ימין-לשמאל / שמאל-לימין.</p>
+      <p class="skill-tag-en"><strong style="color:var(--off-white);">Build stunning websites with Yuval's signature design — automatic.</strong> Anton + Rubik display fonts, Inter + Assistant body fonts, pink/yellow/bone palette, paper grain, warm shadows, asymmetric layouts, GSAP-driven motion, real backdrop-filter glass. Bilingual RTL/LTR baked in.</p>
+      <p class="skill-tag-he" lang="he" dir="rtl"><strong style="color:var(--off-white);">בונה אתרים מדהימים בעיצוב הסיגנייצ'ר של יובל — אוטומטי.</strong> פונטי Anton + Rubik לכותרות, Inter + Assistant לגוף הטקסט, פלטה ורוד/צהוב/קרם, טקסטורת נייר, צללים חמים, פריסות א-סימטריות, אנימציות מבוססות GSAP, זכוכית עם backdrop-filter אמיתי. דו-לשוני ימין-לשמאל / שמאל-לימין מובנה.</p>
       <div class="skill-badges">
         <span>HTML · CSS · React</span>
         <span>Anton + Inter</span>
         <span>Rubik + Assistant</span>
         <span>RTL · LTR</span>
         <span>GSAP-FIRST</span>
+        <span>Glassmorphism</span>
       </div>
-      <code class="skill-install"><span class="prompt-c">$</span> npx <span class="arg">skills add hoodini/ai-agents-skills</span></code>
+      <code class="skill-install" data-copy-text="git clone --depth 1 --filter=blob:none --sparse https://github.com/hoodini/ai-agents-skills /tmp/aas && cd /tmp/aas && git sparse-checkout set skills/yuv-design && mkdir -p ~/.claude/skills && cp -R skills/yuv-design ~/.claude/skills/ && rm -rf /tmp/aas"><span class="prompt-c">$</span> git clone <span class="arg">… ai-agents-skills/skills/yuv-design</span> → <span class="arg">~/.claude/skills/</span> <span style="color:var(--yellow);">[click to copy full]</span></code>
       <div class="skill-cta">
-        <span>View on GitHub · קוד מקור</span>
+        <span>github.com/hoodini/ai-agents-skills/tree/master/skills/<strong style="color:var(--off-white);">yuv-design</strong></span>
         <span class="arrow">→</span>
       </div>
     </a>
@@ -8077,6 +8078,35 @@ function bindCopy(selector) {
 }
 bindCopy('.prompt-copy');
 bindCopy('.scen-copy');
+
+/* skill install copy — click code block, copy full one-liner, don't follow card link */
+document.querySelectorAll('.skill-install').forEach(code => {
+  code.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const text = code.dataset.copyText || code.textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(code);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      document.execCommand('copy');
+    }
+    const orig = code.style.background;
+    code.style.background = code.closest('.skill-card.yellow') ? 'rgba(229, 255, 0, 0.18)' : 'rgba(255, 20, 100, 0.18)';
+    toast.textContent = 'install command copied · paste in your terminal';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+      code.style.background = orig;
+    }, 2200);
+  });
+  code.style.cursor = 'pointer';
+});
 </script>
 </body>
 </html>
