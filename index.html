@@ -91,10 +91,102 @@ a { color: inherit; }
   color: var(--charcoal);
 }
 .brand span { color: var(--pink); }
+
+/* mobile right cluster — visible only on small screens */
+.topbar-mobile-right {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.lang-toggle-mobile { display: none; }
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: var(--charcoal);
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  transition: background .18s ease;
+}
+.nav-toggle:hover { background: var(--pink); }
+.nav-toggle-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--off-white);
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] { background: var(--pink); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .nav {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 880px) {
+  .topbar-inner {
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .topbar-mobile-right {
+    display: flex;
+    margin-inline-start: auto;
+  }
+  .lang-toggle-mobile { display: inline-flex; }
+  .nav-toggle { display: inline-flex; }
+  /* hide the inline lang-toggle inside the nav (we use the mobile one) */
+  .nav .lang-toggle:not(.lang-toggle-mobile) { display: none; }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--off-white);
+    border-bottom: 1px solid rgba(10,10,10,0.08);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    padding: 14px var(--pad-x) 22px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
+  }
+  .nav.open {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 18px var(--pad-x) 24px;
+  }
+  .nav a {
+    width: 100%;
+    text-align: start;
+    padding: 12px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .nav a:hover, .nav a.active { background: var(--charcoal); color: var(--off-white); border-color: var(--charcoal); }
 }
 .nav a {
   font-family: var(--font-display);
@@ -3547,7 +3639,21 @@ html[lang="he"] .tech-en {
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">YUV<span>.AI</span> · EFFECTS</div>
-    <nav class="nav">
+
+    <!-- mobile-only top-right cluster: lang toggle + hamburger -->
+    <div class="topbar-mobile-right">
+      <div class="lang-toggle lang-toggle-mobile" role="group" aria-label="Language toggle">
+        <button class="lang-btn active" data-lang-set="en" aria-label="English"><span class="flag">🇺🇸</span>EN</button>
+        <button class="lang-btn" data-lang-set="he" aria-label="עברית"><span class="flag">🇮🇱</span>HE</button>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+    </div>
+
+    <nav class="nav" id="primary-nav">
       <a href="#hero-video">Reel</a>
       <a href="#skills">Skills · סקילים</a>
       <a href="#captions">Captions</a>
@@ -8596,6 +8702,36 @@ function bindCopy(selector) {
 }
 bindCopy('.prompt-copy');
 bindCopy('.scen-copy');
+
+/* =========================================================
+   MOBILE NAV — hamburger toggle, click-outside, esc, link-clicks close
+   ========================================================= */
+(function () {
+  const btn = document.getElementById('nav-toggle');
+  const nav = document.getElementById('primary-nav');
+  if (!btn || !nav) return;
+  function setOpen(open) {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    setOpen(!nav.classList.contains('open'));
+  });
+  /* close on link click (so the page scrolls smoothly) */
+  nav.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+  /* close on Escape */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) setOpen(false);
+  });
+  /* close when window resizes back to desktop */
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 880 && nav.classList.contains('open')) setOpen(false);
+  });
+})();
 
 /* =========================================================
    LANG TOGGLE — EN/HE with localStorage persistence
