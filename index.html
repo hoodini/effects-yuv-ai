@@ -2990,6 +2990,270 @@ html[lang="he"] .tech-en {
 }
 
 /* ============================================================
+   COURSE CTA — practical.yuv.ai
+   ============================================================ */
+.course-cta {
+  position: relative;
+  margin: clamp(80px, 8vw, 140px) auto 0;
+  padding: clamp(60px, 7vw, 110px) var(--pad-x);
+  background:
+    radial-gradient(60% 80% at 80% 20%, rgba(255, 20, 100, 0.18), transparent 60%),
+    radial-gradient(50% 70% at 10% 80%, rgba(229, 255, 0, 0.10), transparent 60%),
+    var(--charcoal);
+  color: var(--off-white);
+  z-index: 2;
+  overflow: hidden;
+}
+.course-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(255,20,100,0.04) 1px, transparent 1px) 0 0 / 100% 60px,
+              linear-gradient(90deg, rgba(255,20,100,0.04) 1px, transparent 1px) 0 0 / 80px 100%;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.course-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 2; }
+.course-eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 22px;
+  padding: 8px 16px;
+  border: 1.5px solid rgba(229, 255, 0, 0.5);
+  border-radius: 999px;
+  background: rgba(229, 255, 0, 0.06);
+}
+.course-eyebrow::before { content: '★'; font-size: 18px; color: var(--yellow); }
+.course-headline {
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: clamp(44px, 7vw, 92px);
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  margin-bottom: 18px;
+  font-weight: 400;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.4);
+  text-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 14px 42px rgba(0,0,0,0.7);
+}
+.course-headline em { font-style: normal; color: var(--pink); }
+.course-headline-he {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: clamp(34px, 5.5vw, 72px);
+  line-height: 1.05;
+  margin-bottom: 18px;
+  direction: rtl;
+}
+.course-headline-he em { font-style: normal; color: var(--pink); }
+.course-sub {
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.55;
+  color: var(--light-gray);
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+.course-sub strong { color: var(--off-white); }
+.course-sub[dir="rtl"], .course-sub.he {
+  font-family: 'Assistant', 'Inter', sans-serif;
+  direction: rtl;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.course-mod {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.course-mod-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--pink);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.course-mod-name {
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--off-white);
+}
+.course-mod-name[data-lang="he"], .course-mod-he {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  direction: rtl;
+}
+.course-mod-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--light-gray);
+}
+.course-mod-desc[data-lang="he"] {
+  font-family: 'Assistant', 'Inter', sans-serif;
+  direction: rtl;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.course-bonus {
+  background: linear-gradient(135deg, rgba(229, 255, 0, 0.16), rgba(255, 20, 100, 0.10));
+  border: 1.5px dashed rgba(229, 255, 0, 0.5);
+  padding: 22px 28px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.course-bonus-tag {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  background: var(--charcoal);
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.course-bonus-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--off-white);
+  flex: 1;
+  min-width: 240px;
+}
+.course-bonus-text[data-lang="he"] {
+  font-family: 'Assistant', 'Inter', sans-serif;
+  direction: rtl;
+}
+.course-bonus-text strong { color: var(--yellow); }
+
+.course-pricerow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.course-price {
+  background: var(--off-white);
+  color: var(--charcoal);
+  padding: 18px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.course-price .v {
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.course-price .l {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.course-price .l[data-lang="he"] {
+  font-family: 'Assistant', sans-serif;
+  direction: rtl;
+}
+.course-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+.course-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: clamp(15px, 1.5vw, 19px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 18px 30px;
+  background: var(--pink);
+  color: var(--off-white);
+  border: 0;
+  border-radius: 999px;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+  -webkit-text-stroke: 0.5px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 30px rgba(255, 20, 100, 0.45);
+}
+.course-btn:hover {
+  transform: translateY(-2px);
+  background: var(--yellow);
+  color: var(--charcoal);
+  -webkit-text-stroke: 0;
+  box-shadow: 0 16px 40px rgba(229, 255, 0, 0.45);
+}
+.course-btn-arrow { font-size: 22px; }
+.course-btn[data-lang="he"] {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  direction: rtl;
+}
+.course-btn.secondary {
+  background: transparent;
+  color: var(--off-white);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  box-shadow: none;
+  -webkit-text-stroke: 0;
+}
+.course-btn.secondary:hover {
+  background: var(--off-white);
+  color: var(--charcoal);
+  border-color: var(--off-white);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.18);
+}
+
+.course-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.course-trust span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--light-gray);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.course-fineprint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--warm-gray);
+  letter-spacing: 0.06em;
+}
+.course-fineprint[data-lang="he"] {
+  font-family: 'Assistant', sans-serif;
+  direction: rtl;
+}
+
+/* ============================================================
    CONNECT — social section
    ============================================================ */
 .connect-wrap {
@@ -3303,6 +3567,7 @@ html[lang="he"] .tech-en {
       <a href="#prompts">Prompts</a>
       <a href="#scenarios">Scenarios</a>
       <a href="#tech">How · איך</a>
+      <a href="#course" style="background:var(--pink);color:var(--off-white);">★ Course · קורס</a>
       <a href="#connect">Connect</a>
       <div class="lang-toggle" role="group" aria-label="Language toggle">
         <button class="lang-btn active" data-lang-set="en" aria-label="English"><span class="flag">🇺🇸</span>EN</button>
@@ -6239,6 +6504,127 @@ render 9:16 and 16:9</pre>
         <p>אתה זורק נתיב לקובץ <code>.mov</code> גולמי ומשפט אחד: <em>"ערוך לי את זה עם karaoke.scale-pop ו-marker.circle על הסטטיסטיקות."</em> הסקיל מתמלל (Scribe), בוחר ביטים, בונה בייס דרך ffmpeg, מייצר קומפוזיציית HTML עם צירי זמן של GSAP + כרטיסי זכוכית + קריוקי, מריץ את Hyperframes (Chromium מצלם פריים-בפריים), ו-ffmpeg משלב ל-MP4 סופי — גם 9:16 וגם 16:9, נשמר כ-<code>final_&lt;יחס&gt;_V&lt;מספר&gt;.mp4</code>. שתי דקות, שני קבצים, הסטייל שלך.</p>
       </div>
     </article>
+
+  </div>
+</section>
+
+<!-- ============================ COURSE CTA · practical.yuv.ai ============================ -->
+<section class="course-cta" id="course">
+  <div class="course-inner">
+
+    <div class="course-eyebrow">
+      <span data-lang="en">Course by Yuval Avidani</span>
+      <span data-lang="he">הקורס של יובל אבידני</span>
+    </div>
+
+    <h2 class="course-headline" data-lang="en">Master <em>Claude Desktop.</em><br>Practical AI Training.</h2>
+    <h2 class="course-headline-he" data-lang="he">תשתלטו על <em>Claude Desktop.</em><br>קורס מעשי, צעד אחר צעד.</h2>
+
+    <p class="course-sub" data-lang="en">
+      A recorded, step-by-step Hebrew course where Yuval teaches you to make <strong>Claude Desktop</strong> your most powerful work tool. Connect Claude to Gmail and Calendar, analyze emails, organize files and folders, extract information from documents, build apps without code, run Skills automations — everything from one tool, one window, in full control.
+    </p>
+    <p class="course-sub he" data-lang="he">
+      קורס מוקלט, מעשי, צעד-אחר-צעד שבו יובל מלמד אתכם להפוך את <strong>Claude Desktop</strong> לכלי העבודה הכי חזק שיש לכם. נחבר את Claude ל-Gmail וליומן, ננתח מיילים, נסדר את הבלגן בקבצים ובתיקיות, נחלץ מידע ממסמכים, נבנה אפליקציות בלי קוד, נריץ אוטומציות עם Skills — הכל מכלי אחד, חלון אחד, בשליטה מלאה.
+    </p>
+
+    <!-- modules grid (verified from page) -->
+    <div class="course-grid">
+      <div class="course-mod">
+        <span class="course-mod-tag">01 · CORE</span>
+        <span class="course-mod-name" data-lang="en">Full Claude Mastery</span>
+        <span class="course-mod-name" data-lang="he">שליטה מלאה ב-Claude</span>
+        <span class="course-mod-desc" data-lang="en">Chat / Co-Work / Code Mode · install + advanced settings · the assistant that remembers everything and works non-stop.</span>
+        <span class="course-mod-desc" data-lang="he">Chat / Co-Work / Code Mode · התקנה והגדרות מתקדמות · העוזר שזוכר הכל ועובד בלי הפסקה.</span>
+      </div>
+
+      <div class="course-mod">
+        <span class="course-mod-tag">02 · BUILD</span>
+        <span class="course-mod-name" data-lang="en">No-Code Development</span>
+        <span class="course-mod-name" data-lang="he">פיתוח בלי קוד</span>
+        <span class="course-mod-desc" data-lang="en">Games, apps, websites — in one conversation. Custom Chrome extension. A Flappy Bird clone in 60 seconds.</span>
+        <span class="course-mod-desc" data-lang="he">משחקים, אפליקציות, אתרים — בשיחה אחת. תוסף Chrome מותאם אישית. משחק Flappy Bird ב-60 שניות.</span>
+      </div>
+
+      <div class="course-mod">
+        <span class="course-mod-tag">03 · INBOX</span>
+        <span class="course-mod-name" data-lang="en">Email + Calendar Auto</span>
+        <span class="course-mod-name" data-lang="he">מייל ויומן על אוטומט</span>
+        <span class="course-mod-desc" data-lang="en">Gmail filtering + auto-summary · smart Google Calendar sync · 1+ hour saved every day.</span>
+        <span class="course-mod-desc" data-lang="he">סינון וסיכום אוטומטי של Gmail · סנכרון חכם עם Google Calendar · חיסכון של שעה+ ביום.</span>
+      </div>
+
+      <div class="course-mod">
+        <span class="course-mod-tag">04 · DATA</span>
+        <span class="course-mod-name" data-lang="en">Pro Data Analysis</span>
+        <span class="course-mod-name" data-lang="he">ניתוח נתונים כמו מומחה</span>
+        <span class="course-mod-desc" data-lang="en">Excels, receipts, reports · CSV comparison + image classification · insights from data sitting in folders for months.</span>
+        <span class="course-mod-desc" data-lang="he">ניתוח אקסלים, קבלות, דוחות · השוואת CSV וסיווג תמונות · תובנות מנתונים שישבו בתיקיות חודשים.</span>
+      </div>
+
+      <div class="course-mod">
+        <span class="course-mod-tag">05 · AUTO</span>
+        <span class="course-mod-name" data-lang="en">Skills + Automations</span>
+        <span class="course-mod-name" data-lang="he">Skills ואוטומציות</span>
+        <span class="course-mod-desc" data-lang="en">Build custom Skills · connect to Slack, Netlify, Chrome · daily automation: stock + report analysis.</span>
+        <span class="course-mod-desc" data-lang="he">יצירת Skills מותאמים אישית · חיבור ל-Slack, Netlify, Chrome · אוטומציה יומית: ניתוח מניות ודוחות.</span>
+      </div>
+
+      <div class="course-mod">
+        <span class="course-mod-tag">06 · CODE</span>
+        <span class="course-mod-name" data-lang="en">Claude Code</span>
+        <span class="course-mod-name" data-lang="he">Claude Code</span>
+        <span class="course-mod-desc" data-lang="en">Senior-developer-grade automations · publishing websites live · end-to-end work pipelines.</span>
+        <span class="course-mod-desc" data-lang="he">אוטומציות ברמה של מפתח בכיר · פרסום אתרים לאוויר · pipeline עבודה מקצה לקצה.</span>
+      </div>
+    </div>
+
+    <!-- bonus -->
+    <div class="course-bonus">
+      <span class="course-bonus-tag" data-lang="en">🎁 Bonus · Free</span>
+      <span class="course-bonus-tag" data-lang="he">🎁 מתנה · חינם</span>
+      <span class="course-bonus-text" data-lang="en">~200 ready-to-use prompts guide (PDF) — <strong>worth ₪497</strong>, included free with the course. Tagged by tool (Chat / Co-Work / Code) and by domain (legal, finance, HR, marketing, design, management, entrepreneurship, dev, data, security, education, academia).</span>
+      <span class="course-bonus-text" data-lang="he">מדריך כ-200 פרומפטים מוכנים לשימוש מיידי (PDF) — <strong>שווי ₪497</strong>, חינם עם הקורס. מסומנים לפי כלי (Chat / Co-Work / Code) ולפי תחום מקצועי (משפט, פיננסים, HR, שיווק, עיצוב, ניהול, יזמות, פיתוח, דאטה, סייבר, חינוך, אקדמיה).</span>
+    </div>
+
+    <!-- price + CTAs -->
+    <div class="course-pricerow">
+      <div class="course-price">
+        <span class="v">₪1,480</span>
+        <span class="l" data-lang="en">One-time · VAT included</span>
+        <span class="l" data-lang="he">תשלום חד-פעמי · כולל מע"מ</span>
+      </div>
+      <div class="course-cta-row">
+        <a class="course-btn" href="https://learn.yuv.ai/practical" target="_blank" rel="noopener" data-lang="en">
+          <span>Get Instant Access</span><span class="course-btn-arrow">→</span>
+        </a>
+        <a class="course-btn" href="https://learn.yuv.ai/practical" target="_blank" rel="noopener" data-lang="he">
+          <span>הצטרפו עכשיו</span><span class="course-btn-arrow">←</span>
+        </a>
+        <a class="course-btn secondary" href="https://learn.yuv.ai/practical/igjgizI" target="_blank" rel="noopener" data-lang="en">
+          <span>Watch a Full Lesson Free</span><span class="course-btn-arrow">→</span>
+        </a>
+        <a class="course-btn secondary" href="https://learn.yuv.ai/practical/igjgizI" target="_blank" rel="noopener" data-lang="he">
+          <span>צפו בפרק מלא בחינם</span><span class="course-btn-arrow">←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- trust badges (verified from page) -->
+    <div class="course-trust">
+      <span data-lang="en">★ GitHub Star × 2</span>
+      <span data-lang="he">★ GitHub Star × 2</span>
+      <span data-lang="en">★ AWS Gen AI Superstar × 2</span>
+      <span data-lang="he">★ AWS Gen AI Superstar × 2</span>
+      <span data-lang="en">~19 years in tech</span>
+      <span data-lang="he">~19 שנות ניסיון בטכנולוגיה</span>
+      <span data-lang="en">Featured on Israeli media</span>
+      <span data-lang="he">מתראיין בתקשורת הישראלית</span>
+      <span data-lang="en">Speaks worldwide</span>
+      <span data-lang="he">מרצה בארץ ובעולם</span>
+    </div>
+
+    <p class="course-fineprint" data-lang="en">🔒 Secure payment · instant email access · watch from any device · unlimited viewing · lifetime updates · studio-quality production</p>
+    <p class="course-fineprint" data-lang="he">🔒 תשלום מאובטח · גישה מיידית למייל · צפייה מכל מכשיר · ללא הגבלת זמן · עדכונים שוטפים לכל החיים · הפקת אולפן באיכות גבוהה</p>
 
   </div>
 </section>
