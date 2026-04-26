@@ -2583,6 +2583,26 @@ footer {
 .style-neon .pal span { border: 1px solid #ff006e; box-shadow: 0 0 8px rgba(255,0,110,0.3); }
 
 /* ============================================================
+   LANG TOGGLE — universal rules (any element with [data-lang])
+   ============================================================ */
+html:not([lang="he"]) [data-lang="he"] { display: none !important; }
+html[lang="he"] [data-lang="en"] { display: none !important; }
+[data-lang="he"] { direction: rtl; unicode-bidi: embed; }
+[data-lang="he"]:where(p, span, h1, h2, h3, h4, em, strong) {
+  font-family: 'Assistant', 'Inter', sans-serif;
+}
+h1 [data-lang="he"], h2 [data-lang="he"], h3 [data-lang="he"], h4 [data-lang="he"], .display [data-lang="he"] {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+}
+.section-head h2 [data-lang="he"] {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: 0.85em;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
    LANG TOGGLE — EN default, click 🇮🇱 HE to switch
    ============================================================ */
 .lang-toggle {
@@ -3293,27 +3313,43 @@ html[lang="he"] .tech-en {
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Visual catalog · Hyperframes + video-use</div>
-  <h1>Pick the <em>effect</em>,<br>not the <span class="hl-yellow">code</span>.</h1>
+  <div class="hero-eyebrow">
+    <span data-lang="en">Visual catalog · Hyperframes + video-use</span>
+    <span data-lang="he">קטלוג חזותי · Hyperframes + video-use</span>
+  </div>
+  <h1>
+    <span data-lang="en">Pick the <em>effect</em>,<br>not the <span class="hl-yellow">code</span>.</span>
+    <span data-lang="he">בחר את <em>האפקט</em>,<br>לא את <span class="hl-yellow">הקוד</span>.</span>
+  </h1>
   <p class="lead">
-    A live, scrollable catalog of every motion graphic, caption style, transition, marker highlight, and
-    sound effect you can pull into your videos. <strong>Each card has a tap-to-copy effect ID.</strong>
-    Spot one you like, copy its ID, then tell me <em>"use <code style="font-family:var(--font-mono);background:#0A0A0A;color:#E5FF00;padding:2px 6px;">karaoke.scale-pop + marker.circle on brand names</code>"</em>
-    and I'll wire it into the next edit.
+    <span data-lang="en">A live, scrollable catalog of every motion graphic, caption style, transition, marker highlight, and sound effect you can pull into your videos. <strong>Each card has a tap-to-copy effect ID.</strong> Spot one you like, copy its ID, then tell me <em>"use <code style="font-family:var(--font-mono);background:#0A0A0A;color:#E5FF00;padding:2px 6px;">karaoke.scale-pop + marker.circle on brand names</code>"</em> and I'll wire it into the next edit.</span>
+    <span data-lang="he">קטלוג חי וגליל של כל מוטיון גרפיק, סגנון כתוביות, מעבר, סימון, ואפקט קול שאפשר להוסיף לסרטונים שלך. <strong>בכל כרטיס יש מזהה אפקט להעתקה.</strong> איתרת אחד שאתה אוהב, העתק את המזהה ואז תגיד לי <em>"השתמש ב-<code style="font-family:var(--font-mono);background:#0A0A0A;color:#E5FF00;padding:2px 6px;">karaoke.scale-pop + marker.circle על שמות מותגים</code>"</em> ואני אחבר את זה לעריכה הבאה.</span>
   </p>
 </section>
 
 <section class="how">
   <div class="how-box">
     <div>
-      <div class="how-title">How to use<br>this <em>catalog</em>.</div>
+      <div class="how-title">
+        <span data-lang="en">How to use<br>this <em>catalog</em>.</span>
+        <span data-lang="he">איך להשתמש<br><em>בקטלוג</em>.</span>
+      </div>
     </div>
     <div class="how-body">
-      <p><b style="color:var(--yellow);">1.</b> Scroll. Every card is a real, looping demo — what you see is what your video will look like (same GSAP, same CSS).</p>
-      <p><b style="color:var(--yellow);">2.</b> Click any <code>effect.id</code> chip — it copies to your clipboard.</p>
-      <p><b style="color:var(--yellow);">3.</b> When commissioning a video, paste the IDs into the prompt:
-        <br><code>"edit this with style.swiss-pulse, captions karaoke.scale-pop, marker.circle on stats, transition.blur-crossfade, sfx whoosh on every cut, sfx impact on hero word"</code></p>
-      <p><b style="color:var(--yellow);">4.</b> Mix freely. Captions are stackable with marker highlights. Visual styles set the overall mood. Transitions glue scenes. SFX punch beats.</p>
+      <div data-lang="en">
+        <p><b style="color:var(--yellow);">1.</b> Scroll. Every card is a real, looping demo — what you see is what your video will look like (same GSAP, same CSS).</p>
+        <p><b style="color:var(--yellow);">2.</b> Click any <code>effect.id</code> chip — it copies to your clipboard.</p>
+        <p><b style="color:var(--yellow);">3.</b> When commissioning a video, paste the IDs into the prompt:
+          <br><code>"edit this with style.swiss-pulse, captions karaoke.scale-pop, marker.circle on stats, transition.blur-crossfade, sfx whoosh on every cut, sfx impact on hero word"</code></p>
+        <p><b style="color:var(--yellow);">4.</b> Mix freely. Captions are stackable with marker highlights. Visual styles set the overall mood. Transitions glue scenes. SFX punch beats.</p>
+      </div>
+      <div data-lang="he">
+        <p><b style="color:var(--yellow);">1.</b> גלול למטה. כל כרטיס הוא דמו אמיתי שרץ בלולאה — מה שאתה רואה הוא מה שהסרטון שלך ייראה (אותו GSAP, אותו CSS).</p>
+        <p><b style="color:var(--yellow);">2.</b> לחץ על כל צ'יפ <code>effect.id</code> — הוא יועתק ללוח.</p>
+        <p><b style="color:var(--yellow);">3.</b> כשאתה מזמין סרטון, הדבק את המזהים בפרומפט:
+          <br><code>"ערוך לי את זה עם style.swiss-pulse, captions karaoke.scale-pop, marker.circle על הסטטיסטיקות, transition.blur-crossfade, sfx whoosh בכל חיתוך, sfx impact על מילת הגיבור"</code></p>
+        <p><b style="color:var(--yellow);">4.</b> ערבב חופשי. כתוביות מצטברות עם סימוני הדגשה. סגנונות חזותיים קובעים את האווירה הכללית. מעברים מחברים סצנות. אפקטי קול מדגישים ביטים.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -3389,7 +3425,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ CAPTIONS ============================ -->
 <section class="section" id="captions">
   <div class="section-head">
-    <h2><span class="num">01</span>Captions & Karaoke</h2>
+    <h2><span class="num">01</span><span data-lang="en">Captions &amp; Karaoke</span><span data-lang="he">כתוביות וקריוקי</span></h2>
     <span class="meta">7 effects · word-level · output-timeline synced</span>
   </div>
   <p class="section-intro">
@@ -3537,7 +3573,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ MARKER HIGHLIGHTS ============================ -->
 <section class="section" id="markers">
   <div class="section-head">
-    <h2><span class="num">02</span>Marker Highlights</h2>
+    <h2><span class="num">02</span><span data-lang="en">Marker Highlights</span><span data-lang="he">הדגשות סימון</span></h2>
     <span class="meta">5 modes · layer over karaoke for emphasis words</span>
   </div>
   <p class="section-intro">
@@ -3652,7 +3688,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ CARDS ============================ -->
 <section class="section" id="cards">
   <div class="section-head">
-    <h2><span class="num">03</span>Cards & Glass</h2>
+    <h2><span class="num">03</span><span data-lang="en">Cards &amp; Glass</span><span data-lang="he">כרטיסים וזכוכית</span></h2>
     <span class="meta">Real backdrop-filter · 3D tilt entrance · idle float</span>
   </div>
   <p class="section-intro">
@@ -3758,7 +3794,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ VISUAL STYLES ============================ -->
 <section class="section" id="styles">
   <div class="section-head">
-    <h2><span class="num">04</span>Visual Styles</h2>
+    <h2><span class="num">04</span><span data-lang="en">Visual Styles</span><span data-lang="he">סגנונות עיצוב</span></h2>
     <span class="meta">8 named systems · pick one per video</span>
   </div>
   <p class="section-intro">
@@ -4043,7 +4079,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ TRANSITIONS ============================ -->
 <section class="section" id="transitions">
   <div class="section-head">
-    <h2><span class="num">05</span>Scene Transitions</h2>
+    <h2><span class="num">05</span><span data-lang="en">Scene Transitions</span><span data-lang="he">מעברי סצנה</span></h2>
     <span class="meta">10 transitions · CSS + shader · pick one primary, 1–2 accents</span>
   </div>
   <p class="section-intro">
@@ -4209,7 +4245,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ TEXT ANIMATIONS ============================ -->
 <section class="section" id="text-anim">
   <div class="section-head">
-    <h2><span class="num">06</span>Text Animations</h2>
+    <h2><span class="num">06</span><span data-lang="en">Text Animations</span><span data-lang="he">אנימציות טקסט</span></h2>
     <span class="meta">SplitText · typewriter · slam · counter</span>
   </div>
   <p class="section-intro">
@@ -4288,7 +4324,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ DATA ANIMATIONS ============================ -->
 <section class="section" id="data">
   <div class="section-head">
-    <h2><span class="num">07</span>Data in Motion</h2>
+    <h2><span class="num">07</span><span data-lang="en">Data in Motion</span><span data-lang="he">נתונים בתנועה</span></h2>
     <span class="meta">Fill bars · rings · audio bands</span>
   </div>
   <p class="section-intro">
@@ -4373,7 +4409,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ SOUND EFFECTS ============================ -->
 <section class="section" id="sfx">
   <div class="section-head">
-    <h2><span class="num">08</span>Sound Effects</h2>
+    <h2><span class="num">08</span><span data-lang="en">Sound Effects</span><span data-lang="he">אפקטי קול</span></h2>
     <span class="meta">7 audio cues · ElevenLabs sound-generation · mix in base layer</span>
   </div>
   <p class="section-intro">
@@ -4487,7 +4523,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ ARCHETYPE LAYOUTS ============================ -->
 <section class="section" id="archetypes">
   <div class="section-head">
-    <h2><span class="num">09</span>Layout Archetypes</h2>
+    <h2><span class="num">09</span><span data-lang="en">Layout Archetypes</span><span data-lang="he">ארכיטיפי פריסה</span></h2>
     <span class="meta">2 archetypes · per-beat decision</span>
   </div>
   <p class="section-intro">
@@ -4548,7 +4584,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ GSAP REFERENCE ============================ -->
 <section class="section" id="gsap">
   <div class="section-head">
-    <h2><span class="num">10</span>GSAP Reference</h2>
+    <h2><span class="num">10</span><span data-lang="en">GSAP Reference</span><span data-lang="he">מדריך GSAP</span></h2>
     <span class="meta">Easings · stagger · SplitText · timeline · motion-path</span>
   </div>
   <p class="section-intro">
@@ -4733,7 +4769,7 @@ html[lang="he"] .tech-en {
 <!-- ============================ PROMPT LIBRARY ============================ -->
 <section class="section" id="prompts">
   <div class="section-head">
-    <h2><span class="num">11</span>Prompt Library</h2>
+    <h2><span class="num">11</span><span data-lang="en">Prompt Library</span><span data-lang="he">ספריית פרומפטים</span></h2>
     <span class="meta">8 production-ready prompts · copy & paste</span>
   </div>
   <p class="section-intro">
@@ -5010,7 +5046,7 @@ render both aspects</pre>
 <!-- ============================ USE-CASE SCENARIOS ============================ -->
 <section class="section" id="scenarios">
   <div class="section-head">
-    <h2><span class="num">12</span>Use Case Scenarios</h2>
+    <h2><span class="num">12</span><span data-lang="en">Use Case Scenarios</span><span data-lang="he">תרחישי שימוש</span></h2>
     <span class="meta">6 visual scenarios · what each video <em>looks</em> like before you commission it</span>
   </div>
   <p class="section-intro">
@@ -5266,7 +5302,7 @@ render 9:16 and 16:9</pre>
 <!-- ============================ DEVICES ============================ -->
 <section class="section" id="devices">
   <div class="section-head">
-    <h2><span class="num">13</span>Device Mockups</h2>
+    <h2><span class="num">13</span><span data-lang="en">Device Mockups</span><span data-lang="he">מוקאפי מכשירים</span></h2>
     <span class="meta">iPhone · MacBook · Watch · CSS3D · GSAP-driven</span>
   </div>
   <p class="section-intro">
@@ -5414,7 +5450,7 @@ render 9:16 and 16:9</pre>
 <!-- ============================ MIND-BLOWING GSAP ============================ -->
 <section class="section" id="magic">
   <div class="section-head">
-    <h2><span class="num">14</span>Mind-Blowing GSAP</h2>
+    <h2><span class="num">14</span><span data-lang="en">Mind-Blowing GSAP</span><span data-lang="he">GSAP מטלטל</span></h2>
     <span class="meta">10 effects · the "wait, can you do that?" tier</span>
   </div>
   <p class="section-intro">
@@ -5623,7 +5659,7 @@ render 9:16 and 16:9</pre>
 <!-- ============================ THREE.JS / 3D ============================ -->
 <section class="section" id="three">
   <div class="section-head">
-    <h2><span class="num">15</span>3D & Three.js</h2>
+    <h2><span class="num">15</span><span data-lang="en">3D &amp; Three.js</span><span data-lang="he">תלת-ממד · Three.js</span></h2>
     <span class="meta">WebGL · particle systems · CSS3D · live-rendered</span>
   </div>
   <p class="section-intro">
@@ -5695,7 +5731,7 @@ render 9:16 and 16:9</pre>
 <!-- ============================ ADVANCED DATA VIZ ============================ -->
 <section class="section" id="data-pro">
   <div class="section-head">
-    <h2><span class="num">16</span>Charts Pro</h2>
+    <h2><span class="num">16</span><span data-lang="en">Charts Pro</span><span data-lang="he">גרפים מתקדמים</span></h2>
     <span class="meta">Bar race · line · donut · radar · map · sparklines</span>
   </div>
   <p class="section-intro">
@@ -5870,7 +5906,7 @@ render 9:16 and 16:9</pre>
 <!-- ============================ HYPERFRAMES FEATURES ============================ -->
 <section class="section" id="features">
   <div class="section-head">
-    <h2><span class="num">17</span>Hyperframes Features</h2>
+    <h2><span class="num">17</span><span data-lang="en">Hyperframes Features</span><span data-lang="he">היכולות של Hyperframes</span></h2>
     <span class="meta">Everything the engine does · feature-by-feature</span>
   </div>
   <p class="section-intro">
@@ -6210,12 +6246,17 @@ render 9:16 and 16:9</pre>
 <!-- ============================ CONNECT / SOCIAL ============================ -->
 <section class="connect-wrap" id="connect">
   <div class="connect-inner">
-    <div class="connect-eyebrow">Built by Yuval Avidani · Find me everywhere</div>
-    <h2 class="connect-headline">CONNECT.<br>SHIP <em>VIRAL.</em></h2>
+    <div class="connect-eyebrow">
+      <span data-lang="en">Built by Yuval Avidani · Find me everywhere</span>
+      <span data-lang="he">נבנה על ידי יובל אבידני · מצאו אותי בכל מקום</span>
+    </div>
+    <h2 class="connect-headline">
+      <span data-lang="en">CONNECT.<br>SHIP <em>VIRAL.</em></span>
+      <span data-lang="he">בואו <em>נתחבר.</em><br>נשלח ויראלי.</span>
+    </h2>
     <p class="connect-sub">
-      I'm <strong>Yuval Avidani</strong> — I build AI tools, teach Claude Code on <a href="https://practical.yuv.ai" style="color:var(--yellow);">practical.yuv.ai</a>,
-      and ship videos with the exact pipeline you're scrolling through.
-      <strong>Catch me on any of these — DMs open</strong> for collabs, questions, and "how did you build that" threads.
+      <span data-lang="en">I'm <strong>Yuval Avidani</strong> — I build AI tools, teach Claude Code on <a href="https://practical.yuv.ai" style="color:var(--yellow);">practical.yuv.ai</a>, and ship videos with the exact pipeline you're scrolling through. <strong>Catch me on any of these — DMs open</strong> for collabs, questions, and "how did you build that" threads.</span>
+      <span data-lang="he">אני <strong>יובל אבידני</strong> — בונה כלי AI, מלמד Claude Code ב-<a href="https://practical.yuv.ai" style="color:var(--yellow);">practical.yuv.ai</a>, ושולח סרטונים עם בדיוק הפייפליין שגללת מעליו. <strong>תפסו אותי בכל אחד מאלה — ה-DM פתוח</strong> לשיתופי פעולה, שאלות, ושיחות בסגנון "איך בנית את זה".</span>
     </p>
 
     <div class="connect-grid">
@@ -8178,9 +8219,14 @@ bindCopy('.scen-copy');
   const KEY = 'catalog-lang';
   const buttons = document.querySelectorAll('[data-lang-set]');
 
+  const TITLES = {
+    en: 'Effects Catalog — Hyperframes & video-use',
+    he: 'יובל אבידני · קטלוג אפקטים · YUV.AI',
+  };
+
   function setLang(lang) {
     root.setAttribute('lang', lang);
-    /* don't flip layout dir — Hebrew text containers already have dir=rtl */
+    document.title = TITLES[lang] || TITLES.en;
     buttons.forEach(b => b.classList.toggle('active', b.dataset.langSet === lang));
     try { localStorage.setItem(KEY, lang); } catch {}
   }
