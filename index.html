@@ -2583,6 +2583,213 @@ footer {
 .style-neon .pal span { border: 1px solid #ff006e; box-shadow: 0 0 8px rgba(255,0,110,0.3); }
 
 /* ============================================================
+   SKILLS SECTION (EN + HE prominent install)
+   ============================================================ */
+.skills-section {
+  max-width: var(--max-w);
+  margin: clamp(60px, 8vw, 120px) auto 0;
+  padding: 0 var(--pad-x);
+  position: relative;
+  z-index: 2;
+}
+.skills-eyebrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  color: var(--pink);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.skills-eyebrow::before { content: ''; width: 36px; height: 2px; background: var(--pink); display: inline-block; }
+.skills-headline {
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: clamp(46px, 8vw, 120px);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin-bottom: 14px;
+}
+.skills-headline em { font-style: normal; color: var(--pink); }
+.skills-headline-he {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 80px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  direction: rtl;
+  color: var(--charcoal);
+}
+.skills-headline-he span { color: var(--pink); }
+.skills-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 44px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--charcoal);
+  max-width: 1100px;
+}
+@media (max-width: 760px) { .skills-intro { grid-template-columns: 1fr; gap: 14px; } }
+.skills-intro .he {
+  font-family: 'Assistant', 'Inter', sans-serif;
+  direction: rtl;
+  font-size: 16.5px;
+  line-height: 1.65;
+  border-inline-start: 2px solid var(--pink);
+  padding-inline-start: 18px;
+}
+.skills-intro .en {
+  border-left: 2px solid var(--charcoal);
+  padding-left: 18px;
+}
+.skills-intro code {
+  font-family: var(--font-mono);
+  background: var(--charcoal);
+  color: var(--yellow);
+  padding: 1px 7px;
+  font-size: 13px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 880px) { .skills-grid { grid-template-columns: 1fr; } }
+.skill-card {
+  background: var(--charcoal);
+  color: var(--off-white);
+  padding: 36px 38px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-decoration: none;
+  border-top: 6px solid var(--pink);
+  transition: transform .22s ease, box-shadow .22s ease;
+  overflow: hidden;
+}
+.skill-card.yellow { border-top-color: var(--yellow); }
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(255, 20, 100, 0.22);
+}
+.skill-card.yellow:hover {
+  box-shadow: 0 24px 60px rgba(229, 255, 0, 0.18);
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 220px;
+  background: radial-gradient(60% 100% at 100% 0%, rgba(255, 20, 100, 0.18), transparent 60%);
+  pointer-events: none;
+}
+.skill-card.yellow::before {
+  background: radial-gradient(60% 100% at 100% 0%, rgba(229, 255, 0, 0.16), transparent 60%);
+}
+.skill-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--pink);
+  background: rgba(255, 20, 100, 0.12);
+  border: 1px solid rgba(255, 20, 100, 0.4);
+  padding: 4px 10px;
+  align-self: flex-start;
+  text-transform: uppercase;
+}
+.skill-card.yellow .skill-num {
+  color: var(--yellow);
+  background: rgba(229, 255, 0, 0.1);
+  border-color: rgba(229, 255, 0, 0.4);
+}
+.skill-name {
+  font-family: 'Anton', 'Rubik', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--off-white);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+}
+.skill-name-he {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.1;
+  color: var(--off-white);
+  direction: rtl;
+}
+.skill-card.yellow .skill-name-he { color: var(--yellow); }
+.skill-card.yellow .skill-name { color: var(--yellow); }
+.skill-tag-en {
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--light-gray);
+}
+.skill-tag-he {
+  font-family: 'Assistant', 'Inter', sans-serif;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--light-gray);
+  direction: rtl;
+}
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.skill-badges span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--off-white);
+  padding: 4px 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.skill-install {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--stage);
+  color: var(--yellow);
+  padding: 14px 16px;
+  border: 1px solid rgba(229, 255, 0, 0.18);
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+.skill-install .prompt-c { color: var(--pink); }
+.skill-install .arg { color: var(--off-white); }
+.skill-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--off-white);
+}
+.skill-cta .arrow {
+  font-size: 22px;
+  color: var(--pink);
+  transition: transform .25s ease;
+}
+.skill-card.yellow .skill-cta .arrow { color: var(--yellow); }
+.skill-card:hover .skill-cta .arrow { transform: translateX(8px); }
+
+/* ============================================================
    TECH EXPLAINER (EN + HE)
    ============================================================ */
 .tech-grid {
@@ -2971,6 +3178,7 @@ footer {
     <div class="brand">YUV<span>.AI</span> · EFFECTS</div>
     <nav class="nav">
       <a href="#hero-video">Reel</a>
+      <a href="#skills">Skills · סקילים</a>
       <a href="#captions">Captions</a>
       <a href="#markers">Markers</a>
       <a href="#cards">Cards</a>
@@ -3016,6 +3224,73 @@ footer {
         <br><code>"edit this with style.swiss-pulse, captions karaoke.scale-pop, marker.circle on stats, transition.blur-crossfade, sfx whoosh on every cut, sfx impact on hero word"</code></p>
       <p><b style="color:var(--yellow);">4.</b> Mix freely. Captions are stackable with marker highlights. Visual styles set the overall mood. Transitions glue scenes. SFX punch beats.</p>
     </div>
+  </div>
+</section>
+
+<!-- ============================ SKILLS · INSTALL ============================ -->
+<section class="skills-section" id="skills">
+  <div class="skills-eyebrow"><span class="hv-pulse" style="background:var(--pink);box-shadow:0 0 14px var(--pink);"></span>★ Open-source skills · קוד פתוח</div>
+
+  <h2 class="skills-headline">Get the <em>skills.</em><br>Run forever.</h2>
+  <h2 class="skills-headline-he" lang="he" dir="rtl">התקן את ה<span>סקילים</span> פעם אחת. השתמש לתמיד.</h2>
+
+  <div class="skills-intro">
+    <div class="en">
+      <p><strong style="color:var(--pink);">Two open-source skills</strong> power this entire catalog. Install both, drop them in <code>~/.claude/skills/</code>, restart your AI agent (Claude Code, Cursor, Codex, Gemini-CLI) — every video edit and every web build picks them up automatically. <strong style="color:var(--charcoal);">Permanent. Free. Apache 2.0 + MIT.</strong></p>
+    </div>
+    <div class="he" lang="he" dir="rtl">
+      <p><strong style="color:var(--pink);">שני סקילים בקוד פתוח</strong> מפעילים את כל הקטלוג הזה. מתקינים את שניהם, שמים בתיקיית <code>~/.claude/skills/</code>, מפעילים מחדש את סוכן ה-AI שלך (Claude Code, Cursor, Codex, Gemini-CLI) — כל עריכת וידאו וכל בניית אתר ימצאו אותם אוטומטית. <strong style="color:var(--charcoal);">קבוע. חינם. רישיון Apache 2.0 + MIT.</strong></p>
+    </div>
+  </div>
+
+  <div class="skills-grid">
+
+    <!-- yuv-viral-video -->
+    <a class="skill-card" href="https://github.com/hoodini/ai-agents-skills/tree/master/skills/yuv-viral-video" target="_blank" rel="noopener">
+      <span class="skill-num">SKILL · 01 · VIDEO</span>
+      <div>
+        <h3 class="skill-name">yuv-viral-video</h3>
+        <h3 class="skill-name-he" lang="he" dir="rtl">עורך הוידאו הויראלי</h3>
+      </div>
+      <p class="skill-tag-en">Edit any selfie or screen-share into a viral short. Glass cards, MrBeast pacing, karaoke captions, "never cover the speaker's face" — automatic. Always 9:16 + 16:9, always versioned saves.</p>
+      <p class="skill-tag-he" lang="he" dir="rtl">עורך כל סלפי או הקלטת מסך לסרטון ויראלי קצר. כרטיסי זכוכית, קצב MrBeast, כתוביות קריוקי, "אף פעם לא לכסות את הפרצוף של הדובר" — אוטומטי. תמיד 9:16 ו-16:9, תמיד שמירה ממוספרת.</p>
+      <div class="skill-badges">
+        <span>HYPERFRAMES</span>
+        <span>VIDEO-USE</span>
+        <span>9:16 · 16:9</span>
+        <span>RTL · LTR</span>
+        <span>Anton + Rubik</span>
+      </div>
+      <code class="skill-install"><span class="prompt-c">$</span> npx <span class="arg">skills add hoodini/ai-agents-skills</span></code>
+      <div class="skill-cta">
+        <span>View on GitHub · קוד מקור</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <!-- yuv-design -->
+    <a class="skill-card yellow" href="https://github.com/hoodini/ai-agents-skills/tree/master/skills/yuv-design" target="_blank" rel="noopener">
+      <span class="skill-num">SKILL · 02 · WEB</span>
+      <div>
+        <h3 class="skill-name">yuv-design</h3>
+        <h3 class="skill-name-he" lang="he" dir="rtl">עיצוב הוובסייט של יובל</h3>
+      </div>
+      <p class="skill-tag-en">Yuval's signature web design defaults — automatic. Anton + Rubik display, Inter + Assistant body, pink/yellow/bone palette, paper grain, warm shadows, asymmetric layouts. Bilingual RTL/LTR.</p>
+      <p class="skill-tag-he" lang="he" dir="rtl">ברירות מחדל לעיצוב ווב בסטייל של יובל — אוטומטי. Anton + Rubik לכותרות, Inter + Assistant לגוף הטקסט, פלטה ורוד/צהוב/קרם, טקסטורת נייר, צללים חמים, פריסות א-סימטריות. דו-לשוני ימין-לשמאל / שמאל-לימין.</p>
+      <div class="skill-badges">
+        <span>HTML · CSS · React</span>
+        <span>Anton + Inter</span>
+        <span>Rubik + Assistant</span>
+        <span>RTL · LTR</span>
+        <span>GSAP-FIRST</span>
+      </div>
+      <code class="skill-install"><span class="prompt-c">$</span> npx <span class="arg">skills add hoodini/ai-agents-skills</span></code>
+      <div class="skill-cta">
+        <span>View on GitHub · קוד מקור</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
